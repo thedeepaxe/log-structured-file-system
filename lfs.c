@@ -77,8 +77,8 @@ void write (struct fileSystem*fileSystem , char*name ,char*content){
     int folder_offset_buffer = fileSystem->CR.current_folder_offset;  
     for (int i = 0 ; i < fileSystem->block_region[folder_offset_buffer].folder_block.folder_offset; i++){
         if (strcmp(fileSystem->block_region[folder_offset_buffer].folder_block.files[i].filename, name)==0){
-            printf("file already exists");
-            exit(1);
+            printf("file already exists\n");
+            return;
         }  
     }
     //creating a file
@@ -142,8 +142,8 @@ void __mkdir (char *foldername, struct fileSystem *fileSystem){
     int current_folder_offset = fileSystem->CR.current_folder_offset;
     for (int i = 0 ; i < fileSystem->block_region[current_folder_offset].folder_block.folder_offset; i++){
         if (strcmp(fileSystem->block_region[current_folder_offset].folder_block.files[i].filename, foldername)==0 ){
-            printf("folder can not be created");
-            exit(1);
+            printf("folder already exists\n");
+            return;
         }  
     }
     int DO = fileSystem->CR.disk_offset; // disk_offset
