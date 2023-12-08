@@ -181,7 +181,8 @@ void __cd (char *foldername, struct fileSystem *fileSystem){
         }
         if (strcmp(fileSystem->block_region[folder_offset_buffer].folder_block.files[i].filename, foldername)==0 && fileSystem->block_region[current_inode_offset].isfolder == 1){
             fileSystem->CR.current_folder_offset =current_inode_offset;
-            break;
+
+            return;
         }
     }
     printf("folder couldn't be found");
